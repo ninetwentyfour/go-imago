@@ -35,7 +35,7 @@ func profile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	name := params["name"]
 
-	cmd := exec.Command("wkhtmltoimage", "http://google.com", "-")
+	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "--use-xserver", "http://google.com", "-")
 
 	output, _ := cmd.CombinedOutput()
 
