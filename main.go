@@ -49,9 +49,13 @@ func profile(w http.ResponseWriter, r *http.Request) {
 		LogInfo(rediscache)
 	}
 
-	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "--use-xserver", "http://google.com", "-")
+	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "-q", "--use-xserver", "http://google.com", "-")
 
 	output, _ := cmd.CombinedOutput()
+	err = SaveToS3(output, "woohoo_test")
+	if err != nil {
+		LogError(err.Error())
+	}
 
 	w.Write([]byte("Hello " + name + " ENV VAR IS: " + os.Getenv("DEIS_TEST_VAR") + " EXEC: " + string(output)))
 }
