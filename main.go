@@ -39,5 +39,5 @@ func profile(w http.ResponseWriter, r *http.Request) {
 
 	output, err := cmd.CombinedOutput()
 
-	w.Write([]byte("Hello " + name + " ENV VAR IS: " + os.Getenv("DEIS_TEST_VAR") + " EXEC: " + output + " Err: " + err.Error()))
+	w.Write([]byte("Hello " + name + " ENV VAR IS: " + os.Getenv("DEIS_TEST_VAR") + " EXEC: " + string(output) + " Err: " + err.Error()))
 }
