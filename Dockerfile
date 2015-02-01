@@ -6,7 +6,7 @@ FROM golang
 ADD . /go/src/github.com/ninetwentyfour/go-imago
 
 # Download and install wkhtmltopdf
-#RUN apt-get update
+RUN apt-get update
 
 #RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential xorg libssl-dev libxrender-dev wget xvfb fontconfig libjpeg62-turbo
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y fontconfig libjpeg62-turbo
