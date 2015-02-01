@@ -20,8 +20,8 @@ var (
 	ConImageUrl            = "http://static-stage.imago.in.s3.amazonaws.com/"
 	ConPort                = ":6001"
 	ConRateLimitLimit      = 10
-	ConRateLimitTimeout    = 50 // how long before the limit attempts resets
+	ConRateLimitTimeout    = 5 // how long before the limit attempts resets
 	ConNotFoundLink        = os.Getenv("IMAGO_BASE_LINK_URL") + "not_found.jpg"
-	ConImageQuality        = 80
+	ConImageQuality        = 90
 	ConWkhtmltoimageBinary = os.Getenv("WKHTMLTOIMAGE_PATH")
 )

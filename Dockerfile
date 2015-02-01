@@ -6,15 +6,7 @@ FROM golang
 ADD . /go/src/github.com/ninetwentyfour/go-imago
 
 # Download and install wkhtmltopdf
-RUN apt-get update
-
-#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential xorg libssl-dev libxrender-dev wget xvfb fontconfig libjpeg62-turbo
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y fontconfig libjpeg62-turbo xfonts-base xfonts-75dpi libx11-6 libxext6 libxrender1
-#RUN wget http://wkhtmltopdf.googlecode.com/files/wkhtmltoimage-0.11.0_rc1-static-amd64.tar.bz2
-#RUN tar xvjf wkhtmltoimage-0.11.0_rc1-static-amd64.tar.bz2
-#RUN install wkhtmltoimage-amd64 /usr/bin/wkhtmltoimage
-
-#RUN wget http://deis-deps.s3.amazonaws.com/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y fontconfig libjpeg62-turbo xfonts-base xfonts-75dpi libx11-6 libxext6 libxrender1
 ADD http://deis-deps.s3.amazonaws.com/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb /tmp/
 RUN dpkg -i /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
 
