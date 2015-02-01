@@ -49,7 +49,7 @@ func profile(w http.ResponseWriter, r *http.Request) {
 		LogInfo(rediscache)
 	}
 
-	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "-q", "--use-xserver", "http://google.com", "-")
+	cmd := exec.Command("wkhtmltoimage", "-q", "http://google.com", "-")
 
 	output, _ := cmd.CombinedOutput()
 	err = SaveToS3(output, "woohoo_test")

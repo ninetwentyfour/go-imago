@@ -13,13 +13,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential xorg libss
 #RUN tar xvjf wkhtmltoimage-0.11.0_rc1-static-amd64.tar.bz2
 #RUN install wkhtmltoimage-amd64 /usr/bin/wkhtmltoimage
 
-RUN wget http://deis-deps.s3.amazonaws.com/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
-RUN dpkg -i wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
+#RUN wget http://deis-deps.s3.amazonaws.com/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
+ADD http://deis-deps.s3.amazonaws.com/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb /tmp/
+RUN dpkg -i /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
 
 # Build the outyet command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-RUN go get github.com/asaskevich/govalidator
 RUN go get github.com/gorilla/mux
 RUN go get github.com/ninetwentyfour/go-wkhtmltoimage
 RUN go get github.com/zenazn/goji/graceful
