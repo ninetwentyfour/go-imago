@@ -49,7 +49,7 @@ func profile(w http.ResponseWriter, r *http.Request) {
 		LogInfo(rediscache)
 	}
 
-	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "--use-xserver", "http://google.com", "-")
+	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "http://google.com", "-")
 
 	output, _ := cmd.CombinedOutput()
 
