@@ -34,6 +34,12 @@ type Page struct {
 	Body  []byte
 }
 
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	t, _ := template.ParseFiles("home.html")
+	t.Execute(w, nil)
+}
+
 // handle html requests
 func htmlHandler(w http.ResponseWriter, r *http.Request) {
 	link := ""

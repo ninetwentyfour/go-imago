@@ -17,6 +17,7 @@ func init() {
 func main() {
 	r := mux.NewRouter()
 
+	r.HandleFunc("/", homeHandler).Methods(ConMethod)
 	r.HandleFunc(ConUrl+"json", jsonHandler).Methods(ConMethod)
 	r.HandleFunc(ConUrl+"html", htmlHandler).Methods(ConMethod)
 	r.HandleFunc(ConUrl+"image", imageHandler).Methods(ConMethod)
