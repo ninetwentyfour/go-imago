@@ -114,7 +114,7 @@ func getImageLink(r *http.Request, imageParams *ImageParams) string {
 	rediscache, err = redis.String(redisClient.Do("GET", imageParams.Name))
 	if err != nil {
 		// c := wkhtmltoimage.ImageOptions{Input: imageParams.Url, Format: "png", Height: imageParams.Height, Width: imageParams.Width, Quality: ConImageQuality}
-		c := wkhtmltoimage.ImageOptions{BinaryPath: ConWkhtmltoimageBinary, Input: imageParams.Url, Format: "png", Height: 720, Width: 1280, Quality: ConImageQuality}
+		c := wkhtmltoimage.ImageOptions{BinaryPrefix: "xvfb-run", BinaryPath: ConWkhtmltoimageBinary, Input: imageParams.Url, Format: "png", Height: 720, Width: 1280, Quality: ConImageQuality}
 		out, err := wkhtmltoimage.GenerateImage(&c)
 		if err != nil {
 			LogError(err.Error())
