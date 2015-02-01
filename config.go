@@ -11,7 +11,7 @@ const (
 )
 
 var (
-	ConRedisUrl            = ":6379"
+	ConRedisUrl            = os.Getenv("IMAGO_GO_REDIS")
 	ConMaxRedisActive      = 500
 	ConMaxRedisIdle        = 50
 	ConS3Key               = os.Getenv("S3_KEY")
