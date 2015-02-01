@@ -114,7 +114,7 @@ func getImageLink(r *http.Request, imageParams *ImageParams) string {
 	rediscache, err = redis.String(redisClient.Do("GET", imageParams.Name))
 	if err != nil {
 		// c := wkhtmltoimage.ImageOptions{Input: imageParams.Url, Format: "png", Height: imageParams.Height, Width: imageParams.Width, Quality: ConImageQuality}
-		c := wkhtmltoimage.ImageOptions{Input: imageParams.Url, Format: "png", Height: 720, Width: 1280, Quality: ConImageQuality}
+		c := wkhtmltoimage.ImageOptions{BinaryPath: ConWkhtmltoimageBinary, Input: imageParams.Url, Format: "png", Height: 720, Width: 1280, Quality: ConImageQuality}
 		out, err := wkhtmltoimage.GenerateImage(&c)
 		if err != nil {
 			LogError(err.Error())
@@ -162,12 +162,12 @@ func buildParams(r *http.Request) (*ImageParams, error) {
 	if err != nil {
 		return new(ImageParams), err
 	}
-	hash := generateHash(u.Host, params["width"], params["height"])
+	// hash := generateHash(u.Host, params["width"], params["height"])
+	hash := generateHash(params["url"], params["width"], params["height"])
 	return &ImageParams{Width: width, Height: height, Url: escaped, Name: hash, ParsedUrl: u}, nil
 }
 
 func generateHash(name, width, height string) string {
-	// i seem to be generating the same hash for everything?
 	hasher := sha1.New()
 	hasher.Write([]byte(name + "_" + width + "_" + height))
 	return hex.EncodeToString(hasher.Sum(nil))
