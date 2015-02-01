@@ -35,7 +35,7 @@ func profile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	name := params["name"]
 
-	cmd := exec.Command("ls")
+	cmd := exec.Command("echo", "test")
 
 	output, err := cmd.CombinedOutput()
 
