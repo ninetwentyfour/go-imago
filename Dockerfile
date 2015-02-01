@@ -6,11 +6,9 @@ FROM golang
 ADD . /go/src/github.com/ninetwentyfour/go-imago
 
 # Download and install wkhtmltopdf
-RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get upgrade -y
 
-RUN apt-get install -y build-essential xorg libssl-dev libxrender-dev wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential xorg libssl-dev libxrender-dev wget
 RUN wget http://wkhtmltopdf.googlecode.com/files/wkhtmltoimage-0.11.0_rc1-static-amd64.tar.bz2
 RUN tar xvjf wkhtmltoimage-0.11.0_rc1-static-amd64.tar.bz2
 RUN install wkhtmltoimage-amd64 /usr/bin/wkhtmltoimage
