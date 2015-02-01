@@ -35,9 +35,9 @@ func profile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	name := params["name"]
 
-	cmd := exec.Command("echo", "test")
+	cmd := exec.Command("sudo", "echo", "woooohoooo")
 
-	output, err := cmd.CombinedOutput()
+	output, _ := cmd.CombinedOutput()
 
-	w.Write([]byte("Hello " + name + " ENV VAR IS: " + os.Getenv("DEIS_TEST_VAR") + " EXEC: " + string(output) + " Err: " + err.Error()))
+	w.Write([]byte("Hello " + name + " ENV VAR IS: " + os.Getenv("DEIS_TEST_VAR") + " EXEC: " + string(output)))
 }
