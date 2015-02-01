@@ -3,6 +3,7 @@
 package main
 
 import (
+	"github.com/garyburd/redigo/redis"
 	"github.com/gorilla/mux"
 	"github.com/zenazn/goji/graceful"
 	"net/http"
@@ -34,6 +35,19 @@ func main() {
 func profile(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	name := params["name"]
+
+	redisClient := pool.Get()
+	defer redisClient.Close()
+
+	rediscache, err := redis.String(redisClient.Do("GET", name+"_randomstring"))
+	if err != nil {
+		redisClient.Do("SET", name+"_randomstring", "yolololool")
+		redisClient.Do("EXPIRE", name+"_randomstring", 30)
+		LogInfo("NOT IN CACHE")
+	} else {
+		LogInfo("IN CACHE")
+		LogInfo(rediscache)
+	}
 
 	cmd := exec.Command("xvfb-run", "wkhtmltoimage", "--use-xserver", "http://google.com", "-")
 
