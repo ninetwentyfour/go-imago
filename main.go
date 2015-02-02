@@ -1,5 +1,4 @@
 // go run *.go --race
-// should i resize image after capture like imago does? or let wkhtml screenshot at the sizr requested?
 package main
 
 import (
@@ -23,6 +22,7 @@ func main() {
 		agent = gorelic.NewAgent()
 		agent.NewrelicLicense = ConNewRelicKey
 		agent.NewrelicName = "Imago Go"
+		agent.Verbose = true
 		agent.Run()
 	}
 
