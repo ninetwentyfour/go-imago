@@ -7,7 +7,7 @@ const (
 	// ConUrl     = "/{width:[0-9]+}/{height:[0-9]+}/{url}/{format:[a-z]+}"
 	ConUrl         = "/{width:[0-9]+}/{height:[0-9]+}/{url}/"
 	ConMethod      = "GET"
-	ConCacheLength = 50
+	ConCacheLength = 600
 )
 
 var (
