@@ -22,7 +22,6 @@ func main() {
 		agent = gorelic.NewAgent()
 		agent.NewrelicLicense = ConNewRelicKey
 		agent.NewrelicName = "Imago Go"
-		agent.Verbose = true
 		agent.Run()
 	}
 
