@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-// var agent = new(gorelic.Agent)
-
 func init() {
 	createRedisPool()
 }
