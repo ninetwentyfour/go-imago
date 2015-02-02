@@ -18,9 +18,9 @@ func init() {
 
 // url structure http://imago.in/width/height/url/format
 func main() {
-	agent = new(gorelic.Agent)
+	agent := new(gorelic.Agent)
 	if ConNewRelicKey != "" {
-		agent := gorelic.NewAgent()
+		agent = gorelic.NewAgent()
 		agent.NewrelicLicense = ConNewRelicKey
 		agent.NewrelicName = "Imago Go"
 		agent.Run()
