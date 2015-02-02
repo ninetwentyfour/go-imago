@@ -19,6 +19,9 @@ RUN go get github.com/zenazn/goji/graceful
 RUN go get gopkg.in/amz.v1/s3
 RUN go get github.com/garyburd/redigo/redis
 RUN go get github.com/nfnt/resize
+RUN go get github.com/yvasiyarov/gorelic
+RUN go get github.com/yvasiyarov/newrelic_platform_go
+RUN go get github.com/yvasiyarov/go-metrics
 RUN go install github.com/ninetwentyfour/go-imago
 
 # Run the outyet command by default when the container starts.

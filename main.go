@@ -4,12 +4,22 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/yvasiyarov/gorelic"
 	"github.com/zenazn/goji/graceful"
 	"net/http"
 	"time"
 )
 
+var agent = new(gorelic.Agent)
+
 func init() {
+	if ConNewRelicKey != "" {
+		agent = gorelic.NewAgent()
+		agent.NewrelicLicense = ConNewRelicKey
+		agent.NewrelicName = "Imago Go"
+		agent.Run()
+	}
+
 	createRedisPool()
 }
 
@@ -17,10 +27,10 @@ func init() {
 func main() {
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", homeHandler).Methods(ConMethod)
-	r.HandleFunc(ConUrl+"json", jsonHandler).Methods(ConMethod)
-	r.HandleFunc(ConUrl+"html", htmlHandler).Methods(ConMethod)
-	r.HandleFunc(ConUrl+"image", imageHandler).Methods(ConMethod)
+	r.HandleFunc("/", agent.WrapHTTPHandlerFunc(homeHandler)).Methods(ConMethod)
+	r.HandleFunc(ConUrl+"json", agent.WrapHTTPHandlerFunc(jsonHandler)).Methods(ConMethod)
+	r.HandleFunc(ConUrl+"html", agent.WrapHTTPHandlerFunc(htmlHandler)).Methods(ConMethod)
+	r.HandleFunc(ConUrl+"image", agent.WrapHTTPHandlerFunc(imageHandler)).Methods(ConMethod)
 
 	http.Handle(ConRootUrl, r)
 

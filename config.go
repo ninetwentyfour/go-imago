@@ -24,4 +24,5 @@ var (
 	ConNotFoundLink        = os.Getenv("IMAGO_BASE_LINK_URL") + "not_found.jpg"
 	ConImageQuality        = 90
 	ConWkhtmltoimageBinary = os.Getenv("WKHTMLTOIMAGE_PATH")
+	ConNewRelicKey         = os.Getenv("IMAGO_GO_NEW_RELIC")
 )
