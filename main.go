@@ -10,21 +10,22 @@ import (
 	"time"
 )
 
-var agent = new(gorelic.Agent)
+// var agent = new(gorelic.Agent)
 
 func init() {
-	if ConNewRelicKey != "" {
-		agent = gorelic.NewAgent()
-		agent.NewrelicLicense = ConNewRelicKey
-		agent.NewrelicName = "Imago Go"
-		agent.Run()
-	}
-
 	createRedisPool()
 }
 
 // url structure http://imago.in/width/height/url/format
 func main() {
+	agent = new(gorelic.Agent)
+	if ConNewRelicKey != "" {
+		agent := gorelic.NewAgent()
+		agent.NewrelicLicense = ConNewRelicKey
+		agent.NewrelicName = "Imago Go"
+		agent.Run()
+	}
+
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", agent.WrapHTTPHandlerFunc(homeHandler)).Methods(ConMethod)
