@@ -8,7 +8,6 @@ import (
 	"github.com/garyburd/redigo/redis"
 	"github.com/gorilla/mux"
 	"github.com/ninetwentyfour/go-wkhtmltoimage"
-	"html/template"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -36,8 +35,7 @@ type Page struct {
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	t, _ := template.ParseFiles("home.html")
-	t.Execute(w, nil)
+	w.Write(homeHtml())
 }
 
 // handle html requests
@@ -51,9 +49,7 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html")
-	responseStruct := &JsonResponse{Link: link, Website: imageParams.Url}
-	t, _ := template.ParseFiles("page.html")
-	t.Execute(w, responseStruct)
+	w.Write(pageHtml(link, imageParams.Url))
 }
 
 // handle image requests
