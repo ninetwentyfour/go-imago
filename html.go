@@ -11,8 +11,8 @@ func homeHtml() []byte {
 <head>
   <title>imago.rb</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="http://imago.in/docs/public/stylesheets/normalize.css" />
-  <link rel="stylesheet" media="all" href="http://imago.in/docs/docco.css" />
+  <link rel="stylesheet" media="all" href="https://imago.in/docs/public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="https://imago.in/docs/docco.css" />
   <style>
     .container {
       width: 900px;
@@ -57,8 +57,8 @@ func pageHtml(link, url string) []byte {
 <head>
   <title>imago.rb</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" media="all" href="http://imago.in/docs/public/stylesheets/normalize.css" />
-  <link rel="stylesheet" media="all" href="http://imago.in/docs/docco.css" />
+  <link rel="stylesheet" media="all" href="https://imago.in/docs/public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="https://imago.in/docs/docco.css" />
   <style>
     .container {
       width: 900px;

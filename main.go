@@ -9,13 +9,9 @@ import (
 	"time"
 )
 
-func init() {
-	createRedisPool()
-}
+var agent = new(gorelic.Agent)
 
-// url structure http://imago.in/width/height/url/format
-func main() {
-	agent := new(gorelic.Agent)
+func init() {
 	if ConNewRelicKey != "" {
 		agent = gorelic.NewAgent()
 		agent.NewrelicLicense = ConNewRelicKey
@@ -23,6 +19,11 @@ func main() {
 		agent.Run()
 	}
 
+	createRedisPool()
+}
+
+// url structure http://imago.in/width/height/url/format
+func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", agent.WrapHTTPHandlerFunc(homeHandler)).Methods(ConMethod)
