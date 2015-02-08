@@ -88,12 +88,13 @@ func jsonHandler(w http.ResponseWriter, r *http.Request) {
 	responseStruct := JsonResponse{Link: link, Website: imageParams.Url}
 	response, _ := json.Marshal(responseStruct)
 
-	w.Header().Set("Content-Type", "application/json")
 	// handle jsonp callback
 	callback := getCallBack(r)
 	if callback != "" {
+		w.Header().Set("Content-Type", "application/javascript")
 		fmt.Fprintf(w, "%s(%s)", callback, response)
 	} else {
+		w.Header().Set("Content-Type", "application/json")
 		w.Write(response)
 	}
 }
