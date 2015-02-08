@@ -24,6 +24,10 @@ RUN go get github.com/yvasiyarov/newrelic_platform_go
 RUN go get github.com/yvasiyarov/go-metrics
 RUN go install github.com/ninetwentyfour/go-imago
 
+# cleanup
+RUN rm -rf /go/src/
+RUN rm /tmp/wkhtmltox-0.12.2.1_linux-jessie-amd64.deb
+
 # Run the outyet command by default when the container starts.
 ENTRYPOINT /go/bin/go-imago
 
