@@ -7,7 +7,7 @@ const (
 	// ConUrl     = "/{width:[0-9]+}/{height:[0-9]+}/{url}/{format:[a-z]+}"
 	ConUrl         = "/{width:[0-9]+}/{height:[0-9]+}/{url}/"
 	ConMethod      = "GET"
-	ConCacheLength = 600
+	ConCacheLength = 1209600
 )
 
 var (
@@ -16,8 +16,8 @@ var (
 	ConMaxRedisIdle        = 10
 	ConS3Key               = os.Getenv("S3_KEY")
 	ConS3Secret            = os.Getenv("S3_SECRET")
-	ConS3Bucket            = "static-stage.imago.in"
-	ConImageUrl            = "http://static-stage.imago.in.s3.amazonaws.com/"
+	ConS3Bucket            = os.Getenv("IMAGO_S3_BUCKET")
+	ConImageUrl            = os.Getenv("IMAGO_BASE_LINK_URL")
 	ConPort                = ":6001"
 	ConRateLimitLimit      = 10
 	ConRateLimitTimeout    = 5 // how long before the limit attempts resets
