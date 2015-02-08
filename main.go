@@ -27,6 +27,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", agent.WrapHTTPHandlerFunc(homeHandler)).Methods(ConMethod)
+	r.HandleFunc("/get_image", agent.WrapHTTPHandlerFunc(oldHandler)).Methods(ConMethod)
 	r.HandleFunc(ConUrl+"json", agent.WrapHTTPHandlerFunc(jsonHandler)).Methods(ConMethod)
 	r.HandleFunc(ConUrl+"html", agent.WrapHTTPHandlerFunc(htmlHandler)).Methods(ConMethod)
 	r.HandleFunc(ConUrl+"image", agent.WrapHTTPHandlerFunc(imageHandler)).Methods(ConMethod)

@@ -98,6 +98,18 @@ func jsonHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func oldHandler(w http.ResponseWriter, r *http.Request) {
+	imageType := r.FormValue("format")
+	switch imageType {
+	case "image":
+		imageHandler(w, r)
+	case "html":
+		htmlHandler(w, r)
+	default:
+		jsonHandler(w, r)
+	}
+}
+
 func getImageLink(r *http.Request, imageParams *ImageParams) string {
 	redisClient := pool.Get()
 	defer redisClient.Close()
@@ -146,8 +158,15 @@ func getImageLink(r *http.Request, imageParams *ImageParams) string {
 }
 
 func buildParams(r *http.Request) (*ImageParams, error) {
+	var uparam, wparam, hparam string
 	params := mux.Vars(r)
-	escaped, err := url.QueryUnescape(params["url"])
+	if len(params) > 0 {
+		uparam, wparam, hparam = params["url"], params["width"], params["height"]
+	} else {
+		uparam, wparam, hparam = r.FormValue("website"), r.FormValue("width"), r.FormValue("height")
+	}
+
+	escaped, err := url.QueryUnescape(uparam)
 	if err != nil {
 		return new(ImageParams), err
 	}
@@ -155,16 +174,16 @@ func buildParams(r *http.Request) (*ImageParams, error) {
 	if err != nil {
 		return new(ImageParams), err
 	}
-	width, err := strconv.Atoi(params["width"])
+	width, err := strconv.Atoi(wparam)
 	if err != nil {
 		return new(ImageParams), err
 	}
-	height, err := strconv.Atoi(params["height"])
+	height, err := strconv.Atoi(hparam)
 	if err != nil {
 		return new(ImageParams), err
 	}
 	// hash := generateHash(u.Host, params["width"], params["height"])
-	hash := generateHash(params["url"], params["width"], params["height"])
+	hash := generateHash(uparam, wparam, hparam)
 	return &ImageParams{Width: width, Height: height, Url: escaped, Name: hash, ParsedUrl: u}, nil
 }
 
