@@ -173,8 +173,10 @@ func buildParams(r *http.Request) (*ImageParams, error) {
 	}
 	u, err := url.Parse(escaped)
 	if err != nil {
-		fmt.Println("ERROR PARSING URL")
-		fmt.Println(escaped)
+		// fmt.Println("ERROR PARSING URL")
+		LogInfo(ERROR PARSING URL)
+		// fmt.Println(escaped)
+		LogInfo(escaped)
 		return new(ImageParams), err
 	}
 	width, err := strconv.Atoi(wparam)
