@@ -173,10 +173,6 @@ func buildParams(r *http.Request) (*ImageParams, error) {
 	}
 	u, err := url.Parse(escaped)
 	if err != nil {
-		// fmt.Println("ERROR PARSING URL")
-		LogInfo("ERROR PARSING URL")
-		// fmt.Println(escaped)
-		LogInfo(escaped)
 		return new(ImageParams), err
 	}
 	width, err := strconv.Atoi(wparam)
@@ -189,7 +185,6 @@ func buildParams(r *http.Request) (*ImageParams, error) {
 	}
 	// hash := generateHash(u.Host, params["width"], params["height"])
 	hash := generateHash(uparam, wparam, hparam)
-	LogInfo(escaped)
 	return &ImageParams{Width: width, Height: height, Url: escaped, Name: hash, ParsedUrl: u}, nil
 }
 
