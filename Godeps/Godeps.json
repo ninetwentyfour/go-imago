@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/ninetwentyfour/go-imago",
-	"GoVersion": "go1.4.1",
+	"GoVersion": "go1.5.1",
 	"Deps": [
 		{
 			"ImportPath": "github.com/garyburd/redigo/redis",
