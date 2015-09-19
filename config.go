@@ -18,7 +18,7 @@ var (
 	ConS3Secret            = os.Getenv("S3_SECRET")
 	ConS3Bucket            = os.Getenv("IMAGO_S3_BUCKET")
 	ConImageUrl            = os.Getenv("IMAGO_BASE_LINK_URL")
-	ConPort                = ":6001"
+	ConPort                = ":" + os.Getenv("PORT")
 	ConRateLimitLimit      = 20
 	ConRateLimitTimeout    = 5 // how long before the limit attempts resets
 	ConNotFoundLink        = os.Getenv("IMAGO_BASE_LINK_URL") + "not_found.jpg"
