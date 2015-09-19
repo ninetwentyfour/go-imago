@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"github.com/nfnt/resize"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/github.com/nfnt/resize"
 	"image/png"
 )
 

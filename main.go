@@ -2,9 +2,9 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"github.com/yvasiyarov/gorelic"
-	"github.com/zenazn/goji/graceful"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/github.com/gorilla/mux"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/github.com/yvasiyarov/gorelic"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/github.com/zenazn/goji/graceful"
 	"net/http"
 	"time"
 )

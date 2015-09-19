@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gopkg.in/amz.v1/aws"
-	"gopkg.in/amz.v1/s3"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/gopkg.in/amz.v1/aws"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/gopkg.in/amz.v1/s3"
 )
 
 var (

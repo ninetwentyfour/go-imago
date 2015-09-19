@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/garyburd/redigo/redis"
+	"github.com/ninetwentyfour/go-imago/Godeps/_workspace/src/github.com/garyburd/redigo/redis"
 )
 
 var pool redis.Pool
